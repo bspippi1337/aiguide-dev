@@ -1,6 +1,3 @@
-# aiguide-dev
-wip
-
 # aiguide – Direkte arbeidsmodus for AI-assistanse
 
 Dette biblioteket ble utviklet gjennom en komplett dialog med en AI-assistent. **Hele samtalen** er dokumentert nedenfor – fra det opprinnelige kravet til ferdig løsning.
