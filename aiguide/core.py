@@ -16,9 +16,8 @@ def _model_options(model):
     options = {"model": model}
     if model.startswith(("gpt-6", "gpt-5", "o1", "o3", "o4")):
         options["max_completion_tokens"] = 12000
-        # These model families explicitly support reasoning_effort="none".
-        if model.startswith(("gpt-6.1-terra", "gpt-6-luna", "gpt-6-sol")):
-            options["reasoning_effort"] = "none"
+        # Do not guess model-specific reasoning_effort availability.
+        # Defaults are safer than shipping unsupported model arguments.
     else:
         options["temperature"] = 0.2
     return options
