@@ -1,0 +1,30 @@
+name: Python contract CI
+
+on:
+  pull_request:
+  push:
+    branches: [main, feat/gpt6-api-compat]
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  tests:
+    runs-on: ubuntu-latest
+    strategy:
+      fail-fast: false
+      matrix:
+        python-version: ["3.10", "3.12"]
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: ${{ matrix.python-version }}
+          cache: pip
+      - name: Install library in isolated environment
+        run: python -m pip install -e .
+      - name: Run API-independent unit tests
+        run: python -m unittest discover -s tests -p "test_*.py" -v
+      - name: Static Python syntax validation
+        run: python -m compileall -q aiguide tests
