@@ -1,5 +1,7 @@
 # aiguide – Direkte arbeidsmodus for AI-assistanse
 
+> **2026 API-kompatibilitet:** Biblioteket kan bruke GPT-6.1 Terra som standard og utelater uforenlige temperaturparametere for moderne resonneringsmodeller. Loggene inneholder forespørsler, synlige svar og eventuelt en offentlig forklaring. Interne modell-tankeprosesser er ikke tilgjengelige. Testes offline med `python -m unittest discover -s tests -v`.
+
 Dette biblioteket ble utviklet gjennom en komplett dialog med en AI-assistent. **Hele samtalen** er dokumentert nedenfor – fra det opprinnelige kravet til ferdig løsning.
 
 ## 📄 Opprinnelig prompt-mal
