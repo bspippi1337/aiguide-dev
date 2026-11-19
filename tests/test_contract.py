@@ -12,7 +12,7 @@ class AiguideContractTests(TestCase):
         for model in ("gpt-6.1-terra", "gpt-6.2-sol", "gpt-6.2-astra",
                       "gpt-5.6-sol"):
             self.assertNotIn("temperature", _model_options(model))
-        self.assertEqual("none", _model_options("gpt-6.1-terra")["reasoning_effort"])
+        self.assertNotIn("reasoning_effort", _model_options("gpt-6.1-terra"))
         self.assertNotIn("reasoning_effort", _model_options("gpt-6.2-astra"))
 
     def test_legacy_nonreasoning_model_retains_sampling(self):
@@ -31,7 +31,7 @@ class AiguideContractTests(TestCase):
             self.assertIsNone(note)
             kwargs = client.return_value.chat.completions.create.call_args.kwargs
             self.assertEqual("gpt-6.1-terra", kwargs["model"])
-            self.assertEqual("none", kwargs["reasoning_effort"])
+            self.assertNotIn("reasoning_effort", kwargs)
             self.assertNotIn("temperature", kwargs)
             log.assert_called_once()
             self.assertNotIn("sk-test-only", str(log.call_args))
